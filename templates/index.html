@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-container">
+    <h1>Dark Messenger</h1>
+    <button onclick="location.href='/login'">Login</button>
+    <button onclick="createWallet()">Create Wallet</button>
+</div>
+
+<script>
+    async function createWallet() {
+        try {
+            const response = await fetch('/create_wallet', { method: 'POST' });
+            const data = await response.json();
+            if (response.ok) {
+                alert('Wallet created! Your mnemonic phrase: ' + data.mnemonic_phrase);
+                location.href = '/chat';
+            } else {
+                alert('Error: ' + data.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred.');
+        }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,6 @@
+Flask
+mnemonic
+cryptography
+marshmallow
+Pillow
+Werkzeug

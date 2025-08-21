@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="chat-container">
+    <div class="sidebar">
+        <div class="user-info">
+            <p>Your Address: <span id="userAddress">{{ address[:10] }}...</span></p>
+            <button onclick="location.href='/logout'">Logout</button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/chat">Chat</a></li>
+                <li><a href="/contacts" class="active">Contacts</a></li>
+                <li><a href="/groups">Groups</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <h2>Contacts</h2>
+        <div class="contacts-list" id="contactsList">
+            <!-- Contacts will be loaded here -->
+            <p id="noContactsMessage">Loading contacts...</p>
+        </div>
+        <div class="input-area">
+            <input type="text" id="contactName" placeholder="Contact Name">
+            <input type="text" id="contactAddress" placeholder="Contact Address">
+            <button onclick="addContact()">Add Contact</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function loadContacts() {
+        try {
+            const response = await fetch('/get_contacts');
+            const data = await response.json();
+            if (response.ok) {
+                const container = document.getElementById('contactsList');
+                const noContactsMsg = document.getElementById('noContactsMessage');
+                container.innerHTML = '';
+                if (data.contacts.length === 0) {
+                    noContactsMsg.style.display = 'block';
+                    noContactsMsg.textContent = 'No contacts found. Add one!';
+                } else {
+                    noContactsMsg.style.display = 'none';
+                    const ul = document.createElement('ul');
+                    data.contacts.forEach(contact => {
+                        const li = document.createElement('li');
+                        li.className = 'contact-item';
+                        li.innerHTML = `
+                            <span class="contact-info">${contact.name} (${contact.address.substring(0, 10)}...)</span>
+                            <button class="delete-btn" onclick="deleteContact('${contact.address}', this)">Delete</button>
+                        `;
+                        ul.appendChild(li);
+                    });
+                    container.appendChild(ul);
+                }
+            } else {
+                console.error('Failed to load contacts:', data.error);
+                document.getElementById('contactsList').innerHTML = `<p class="error">Error loading contacts: ${data.error}</p>`;
+            }
+        } catch (error) {
+            console.error('Error loading contacts:', error);
+            document.getElementById('contactsList').innerHTML = `<p class="error">Error loading contacts.</p>`;
+        }
+    }
+
+    async function addContact() {
+        const name = document.getElementById('contactName').value.trim();
+        const address = document.getElementById('contactAddress').value.trim();
+
+        if (!name || !address) {
+            alert('Please fill in both name and address.');
+            return;
+        }
+
+        if (address.length !== 64) {
+            alert('Invalid address format. Address must be 64 characters long.');
+            return;
+        }
+
+        try {
+            const response = await fetch('/add_contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, address })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                document.getElementById('contactName').value = '';
+                document.getElementById('contactAddress').value = '';
+                loadContacts(); // Перезагрузить контакты
+                alert('Contact added successfully.');
+            } else {
+                alert('Error: ' + data.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while adding the contact.');
+        }
+    }
+
+    async function deleteContact(address, buttonElement) {
+        if (!confirm("Are you sure you want to delete this contact?")) {
+            return; // Отмена, если пользователь нажал "Отмена"
+        }
+
+        try {
+            // Отключаем кнопку, чтобы избежать повторных кликов
+            buttonElement.disabled = true;
+            buttonElement.textContent = 'Deleting...';
+
+            const response = await fetch('/delete_contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ address })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                // Удаляем элемент списка из DOM
+                buttonElement.closest('li').remove();
+                // Проверяем, остались ли контакты
+                const contactItems = document.querySelectorAll('.contact-item');
+                if (contactItems.length === 0) {
+                    document.getElementById('noContactsMessage').style.display = 'block';
+                    document.getElementById('noContactsMessage').textContent = 'No contacts found. Add one!';
+                }
+                alert('Contact deleted successfully.');
+            } else if (response.status === 404) {
+                alert('Contact not found.');
+                // Удаляем элемент списка из DOM, даже если не найден на сервере
+                buttonElement.closest('li').remove();
+            } else {
+                alert('Error: ' + data.error);
+                // Включаем кнопку обратно в случае ошибки
+                buttonElement.disabled = false;
+                buttonElement.textContent = 'Delete';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while deleting the contact.');
+            // Включаем кнопку обратно в случае ошибки сети
+            buttonElement.disabled = false;
+            buttonElement.textContent = 'Delete';
+        }
+    }
+
+    // Загрузка контактов при открытии страницы
+    document.addEventListener('DOMContentLoaded', loadContacts);
+</script>
+{% endblock %}
