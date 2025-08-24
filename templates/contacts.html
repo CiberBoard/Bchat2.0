@@ -6,15 +6,16 @@
             <p>Your Address: <span id="userAddress">{{ address[:10] }}...</span></p>
             <button onclick="location.href='/logout'">Logout</button>
         </div>
-        <nav>
-            <ul>
-                <li><a href="/chat">Chat</a></li>
-                <li><a href="/contacts" class="active">Contacts</a></li>
-                <li><a href="/groups">Groups</a></li>
-                <li><a href="/profile">Profile</a></li>
-            </ul>
-        </nav>
+
+        <!-- Навигация в виде вкладок -->
+        <div class="tabs">
+            <div class="tab" onclick="location.href='/chat'">Chat</div>
+            <div class="tab active" onclick="location.href='/contacts'">Contacts</div>
+            <div class="tab" onclick="location.href='/groups'">Groups</div>
+            <div class="tab" onclick="location.href='/profile'">Profile</div>
+        </div>
     </div>
+
     <div class="main-content">
         <h2>Contacts</h2>
         <div class="contacts-list" id="contactsList">
@@ -102,7 +103,7 @@
 
     async function deleteContact(address, buttonElement) {
         if (!confirm("Are you sure you want to delete this contact?")) {
-            return; // Отмена, если пользователь нажал "Отмена"
+            return;
         }
 
         try {

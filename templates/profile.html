@@ -6,15 +6,16 @@
             <p>Your Address: <span id="userAddress">{{ address[:10] }}...</span></p>
             <button onclick="location.href='/logout'">Logout</button>
         </div>
-        <nav>
-            <ul>
-                <li><a href="/chat" {% if request.endpoint == 'chat' %}class="active"{% endif %}>Chat</a></li>
-                <li><a href="/contacts" {% if request.endpoint == 'contacts' %}class="active"{% endif %}>Contacts</a></li>
-                <li><a href="/groups" {% if request.endpoint == 'groups' %}class="active"{% endif %}>Groups</a></li>
-                <li><a href="/profile" {% if request.endpoint == 'profile' %}class="active"{% endif %}>Profile</a></li>
-            </ul>
-        </nav>
+
+        <!-- Навигация в виде вкладок -->
+        <div class="tabs">
+            <div class="tab" onclick="location.href='/chat'">Chat</div>
+            <div class="tab" onclick="location.href='/contacts'">Contacts</div>
+            <div class="tab" onclick="location.href='/groups'">Groups</div>
+            <div class="tab active" onclick="location.href='/profile'">Profile</div>
+        </div>
     </div>
+
     <div class="main-content">
         <h2>Your Profile</h2>
 
@@ -36,25 +37,109 @@
                 <input type="text" id="mnemonic" value="{{ mnemonic }}" readonly style="display:none;">
                 <!-- Отображаемая часть -->
                 <input type="text" id="mnemonicDisplay" value="{{ mnemonic[:20] }}..." readonly>
-                <button onclick="toggleMnemonicVisibility()">Show</button>
+                <button onclick="toggleMnemonicVisibility()" id="toggleMnemonicBtn">Show</button>
                 <button onclick="copyToClipboard('mnemonic', 'mnemonicFeedback')">Copy</button>
                 <span id="mnemonicFeedback" class="copy-feedback"></span>
             </div>
-             <p class="security-warning">⚠️ <strong>Warning:</strong> Keep this phrase secret! Anyone with it can access your wallet.</p>
+            <p class="security-warning">⚠️ <strong>Warning:</strong> Keep this phrase secret! Anyone with it can access your wallet.</p>
         </div>
 
-        <!-- "Приватный ключ" (в данном случае совпадает с мнемоникой) -->
+        <!-- Дополнительная информация -->
         <div class="info-item">
-            <label for="privateKey">Derived Private Key (SHA256 of Mnemonic):</label>
-            <div class="input-with-copy">
-                 <input type="text" id="privateKey" value="{{ private_key | e }}" readonly>
-                 <button onclick="copyToClipboard('privateKey', 'privateKeyFeedback')">Copy</button>
-                 <span id="privateKeyFeedback" class="copy-feedback"></span>
+            <h3>Security Information</h3>
+            <div class="security-info">
+                <p><strong>Wallet Status:</strong> <span class="status-active">Active</span></p>
+                <p><strong>Network:</strong> Mainnet</p>
             </div>
-            <p class="security-note">Note: This is derived from your mnemonic for demonstration. In a real system, a proper key derivation function would be used.</p>
         </div>
     </div>
 </div>
+
+<style>
+.status-active {
+    color: #00c853;
+    font-weight: bold;
+}
+
+.security-info {
+    background-color: #2c2c2c;
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 3px solid #bb86fc;
+}
+
+.security-info p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+/* Стили для модального окна мнемоники */
+.mnemonic-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mnemonic-modal-content {
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    max-width: 90%;
+    width: 500px;
+    text-align: center;
+    position: relative;
+}
+
+.mnemonic-display {
+    background-color: #2c2c2c;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 20px 0;
+    border: 1px solid #444;
+    word-break: break-all;
+    font-family: monospace;
+    font-size: 16px;
+    color: #e0e0e0;
+}
+
+.security-warning-modal {
+    color: #cf6679;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.modal-button {
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 10px 5px;
+    border: none;
+}
+
+.copy-button {
+    background-color: #bb86fc;
+    color: #121212;
+}
+
+.close-button {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.modal-copy-feedback {
+    margin-top: 10px;
+    color: green;
+}
+</style>
 
 <script>
     function copyToClipboard(elementId, feedbackId) {
@@ -64,7 +149,7 @@
         // Для мнемоники копируем из скрытого поля
         let textToCopy = element.value;
         if (elementId === 'mnemonic') {
-             textToCopy = document.getElementById('mnemonic').value;
+            textToCopy = document.getElementById('mnemonic').value;
         }
 
         navigator.clipboard.writeText(textToCopy).then(() => {
@@ -78,22 +163,111 @@
         });
     }
 
-    function toggleMnemonicVisibility() {
-        const mnemonicInput = document.getElementById('mnemonic');
-        const displayInput = document.getElementById('mnemonicDisplay');
-        const button = event.target; // Кнопка, которая была нажата
+    function showSecurityWarning(callback) {
+        // Создаем временное предупреждение
+        const warning = document.createElement('div');
+        warning.id = 'mnemonicWarning';
+        warning.innerHTML = `
+            <div class="mnemonic-modal-overlay" onclick="closeSecurityWarning()">
+                <div class="mnemonic-modal-content" onclick="event.stopPropagation()">
+                    <h3 style="margin-top: 0; color: #bb86fc;">⚠️ SECURITY WARNING</h3>
+                    <p style="color: #e0e0e0;">Never share your mnemonic phrase with anyone!</p>
+                    <p style="color: #e0e0e0;">Make sure no one is watching your screen.</p>
+                    <button onclick="closeSecurityWarningAndShowMnemonic()" class="modal-button copy-button" style="margin-top: 20px;">
+                        I Understand - Show Mnemonic
+                    </button>
+                    <button onclick="closeSecurityWarning()" class="modal-button close-button">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(warning);
+    }
 
-        if (mnemonicInput.style.display === 'none') {
-            // Показать полную фразу
-            mnemonicInput.style.display = 'inline-block';
-            displayInput.style.display = 'none';
-            button.textContent = 'Hide';
+    function closeSecurityWarning() {
+        const warning = document.getElementById('mnemonicWarning');
+        if (warning) {
+            warning.remove();
+        }
+    }
+
+    function closeSecurityWarningAndShowMnemonic() {
+        closeSecurityWarning();
+        showMnemonicInModal();
+    }
+
+    function showMnemonicInModal() {
+        const mnemonic = document.getElementById('mnemonic').value;
+        const modal = document.createElement('div');
+        modal.id = 'mnemonicModal';
+        modal.className = 'mnemonic-modal-overlay';
+        modal.onclick = closeMnemonicModal;
+
+        modal.innerHTML = `
+            <div class="mnemonic-modal-content" onclick="event.stopPropagation()">
+                <h2 style="margin-top: 0; color: #bb86fc;">Mnemonic Phrase</h2>
+                <div class="mnemonic-display">${mnemonic}</div>
+                <p class="security-warning-modal">⚠️ NEVER SHARE THIS WITH ANYONE!</p>
+                <button onclick="copyMnemonicFromModal()" class="modal-button copy-button">
+                    Copy to Clipboard
+                </button>
+                <button onclick="closeMnemonicModal()" class="modal-button close-button">
+                    Close
+                </button>
+                <div id="modalCopyFeedback" class="modal-copy-feedback"></div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    function copyMnemonicFromModal() {
+        const mnemonic = document.getElementById('mnemonic').value;
+        navigator.clipboard.writeText(mnemonic).then(() => {
+            const feedback = document.getElementById('modalCopyFeedback');
+            if (feedback) {
+                feedback.textContent = 'Mnemonic copied to clipboard!';
+                setTimeout(() => {
+                    if (feedback) feedback.textContent = '';
+                }, 2000);
+            }
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            const feedback = document.getElementById('modalCopyFeedback');
+            if (feedback) {
+                feedback.textContent = 'Failed to copy!';
+                feedback.style.color = 'red';
+            }
+        });
+    }
+
+    function closeMnemonicModal() {
+        const modal = document.getElementById('mnemonicModal');
+        if (modal) {
+            modal.remove();
+        }
+    }
+
+    function toggleMnemonicVisibility() {
+        const button = document.getElementById('toggleMnemonicBtn');
+
+        if (button.textContent === 'Show') {
+            // Показываем предупреждение безопасности, затем мнемонику
+            showSecurityWarning();
         } else {
-            // Скрыть полную фразу
-            mnemonicInput.style.display = 'none';
-            displayInput.style.display = 'inline-block';
+            // Если уже показана, просто скрываем
+            closeMnemonicModal();
+            // Возвращаем кнопку в состояние "Show"
             button.textContent = 'Show';
         }
     }
+
+    // Обработчик для закрытия модальных окон клавишей ESC
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeMnemonicModal();
+            closeSecurityWarning();
+        }
+    });
 </script>
 {% endblock %}
