@@ -22,7 +22,7 @@ DATABASE_PATH = 'blockchain.db'
 UPLOAD_FOLDER = 'uploads'
 STATIC_FOLDER = 'static'
 TEMPLATE_FOLDER = 'templates'
-SECRET_KEY = 'your-secret-key-change-in-production'
+SECRET_KEY = 'Jasstme666'
 MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max file size
 
 # === Настройка логирования ===
