@@ -1,3 +1,4 @@
+<!-- templates/chat.html -->
 {% extends "base.html" %}
 {% block content %}
 <div class="chat-container">
@@ -42,6 +43,8 @@
         </div>
         <div class="input-area">
             <input type="text" id="messageContent" placeholder="Type a message..." disabled>
+            <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageSelection(event)">
+            <button onclick="document.getElementById('imageInput').click()" id="attachImageButton" disabled title="Attach Image">&#x1F4F7;</button>
             <button onclick="sendMessage()" id="sendButton" disabled>Send</button>
         </div>
     </div>
@@ -122,6 +125,21 @@
 /* Улучшенный стиль для области сканирования */
 #qrScannerContainerModal video {
     background-color: #000;
+}
+
+/* Стиль для кнопки аттача изображения */
+#attachImageButton {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #ccc;
+}
+#attachImageButton:hover {
+    color: #bb86fc;
+    border-color: #bb86fc;
 }
 </style>
 
@@ -367,7 +385,31 @@
         console.log('QR Scanner closed successfully');
     }
 
-    // Остальные функции JavaScript
+
+    // --- Логика отправки изображений ---
+    let pendingImageData = null; // Храним закодированные данные изображения
+
+    function handleImageSelection(event) {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // e.target.result содержит Data URL (base64)
+                pendingImageData = e.target.result; // Сохраняем данные изображения
+                console.log("Image selected and encoded.");
+                // Опционально: можно показать превью
+                // document.getElementById('messageContent').placeholder = "[Image Attached]";
+            };
+            reader.readAsDataURL(file); // Читаем файл как Data URL (base64)
+        } else {
+             alert('Please select a valid image file.');
+             pendingImageData = null;
+        }
+        // Сбрасываем input, чтобы можно было выбрать тот же файл снова
+        event.target.value = '';
+    }
+
+    // --- Остальные функции JavaScript ---
     let currentChatAddress = "";
     let currentChatIsGroup = false;
     let currentChatPartnerAddress = "";
@@ -426,6 +468,7 @@
         }
 
         document.getElementById('messageContent').disabled = false;
+        document.getElementById('attachImageButton').disabled = false; // Включаем кнопку аттача
         document.getElementById('sendButton').disabled = false;
         document.getElementById('noChatSelectedMessage').style.display = 'none';
 
@@ -443,6 +486,7 @@
 
         lastMessageTimestamp = 0;
         loadMessagesForConversation(address);
+        pendingImageData = null; // Сбрасываем при выборе нового чата
     }
 
     async function loadContactsForModal() {
@@ -498,10 +542,14 @@
 
                         let imageHtml = '';
                         if (msg.image) {
+                             // Проверяем, начинается ли изображение с префикса data:image
                              if (msg.image.startsWith('data:image')) {
-                                  imageHtml = `<img src="${msg.image}" alt="Image" style="max-width: 200px;">`;
+                                  imageHtml = `<img src="${msg.image}" alt="Image" style="max-width: 200px; max-height: 200px; border-radius: 4px;">`;
                              } else {
-                                  imageHtml = `<img src="${msg.image}" alt="Image" style="max-width: 200px;">`;
+                                  // Если это не data URL, возможно, это ошибка или старое сообщение
+                                  // Можно отобразить как есть или показать ошибку
+                                  // Для совместимости, попробуем отобразить как есть
+                                  imageHtml = `<img src="${msg.image}" alt="Image" style="max-width: 200px; max-height: 200px; border-radius: 4px;">`;
                              }
                         }
 
@@ -547,8 +595,9 @@
         const recipient = currentChatAddress;
         const isGroup = currentChatIsGroup === true || currentChatIsGroup === 'true';
 
-        if (!recipient || !content) {
-            alert('Please select a conversation and enter a message.');
+        // Проверяем, есть ли текст или изображение
+        if (!recipient || (!content && !pendingImageData)) {
+            alert('Please enter a message or attach an image.');
             return;
         }
 
@@ -557,11 +606,15 @@
 
         const payload = {
             recipient: recipient,
-            content: content,
+            content: content || "", // Отправляем пустую строку, если нет текста
             message_type: messageType
         };
         if (groupId) {
             payload.group_id = groupId;
+        }
+        // Если есть изображение, добавляем его в payload
+        if (pendingImageData) {
+            payload.image = pendingImageData; // Передаем base64 строку напрямую
         }
 
         try {
@@ -573,6 +626,7 @@
             const data = await response.json();
             if (response.ok) {
                 document.getElementById('messageContent').value = '';
+                pendingImageData = null; // Сбрасываем данные изображения после отправки
                 loadMessagesForConversation(recipient, true);
             } else {
                 alert('Error: ' + data.error);
