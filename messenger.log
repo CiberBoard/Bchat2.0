@@ -1370,3 +1370,368 @@
 2025-08-25 02:30:59,425 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:30:59] "GET /get_conversations HTTP/1.1" 200 -
 2025-08-25 02:31:05,457 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:31:05] "GET /profile HTTP/1.1" 200 -
 2025-08-25 02:31:05,477 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:31:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:32:22,973 INFO root Blockchain initialized
+2025-08-25 02:32:23,027 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.14:5000
+2025-08-25 02:32:23,027 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-08-25 02:32:23,029 INFO werkzeug  * Restarting with stat
+2025-08-25 02:32:23,502 INFO root Blockchain initialized
+2025-08-25 02:32:23,540 WARNING werkzeug  * Debugger is active!
+2025-08-25 02:32:23,545 INFO werkzeug  * Debugger PIN: 910-978-933
+2025-08-25 02:32:25,669 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:25] "GET /profile HTTP/1.1" 200 -
+2025-08-25 02:32:25,724 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:25] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:32:32,955 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:32] "GET /groups HTTP/1.1" 200 -
+2025-08-25 02:32:32,976 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:32:32,991 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:32] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:32:33,771 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:33] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:32:33,789 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:33] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:32:33,807 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:33] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:32:38,729 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:38] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:32:38,750 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:38] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:32:38,766 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:38] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:32:48,668 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:48] "GET / HTTP/1.1" 200 -
+2025-08-25 02:32:48,682 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:48] "GET /static/style.css HTTP/1.1" 200 -
+2025-08-25 02:32:51,234 INFO root New wallet created: 14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231
+2025-08-25 02:32:51,235 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:51] "[35m[1mPOST /create_wallet HTTP/1.1[0m" 201 -
+2025-08-25 02:32:52,072 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:52] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:32:52,089 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:32:52,125 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:52] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:32:56,961 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:56] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:32:59,499 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:59] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:32:59,769 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:32:59] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:02,773 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:02] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:05,249 INFO root Contact added/updated: 14f2274fea... (14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231) for user d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969
+2025-08-25 02:33:05,250 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:05] "[35m[1mPOST /add_contact_from_chat HTTP/1.1[0m" 201 -
+2025-08-25 02:33:06,412 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:06] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:08,058 INFO root Transaction added from d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 to 14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231, ID: 12
+2025-08-25 02:33:08,231 INFO root New block added: 13
+2025-08-25 02:33:08,244 INFO root Message sent from d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 to 14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231
+2025-08-25 02:33:08,245 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:08] "[35m[1mPOST /send_message HTTP/1.1[0m" 201 -
+2025-08-25 02:33:08,258 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:08] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:08,773 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:08] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:11,784 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:11] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:14,773 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:14] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:14,870 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:14] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:33:14,884 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:33:14,892 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:14] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:33:16,218 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:16] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:17,781 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:17] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:17,908 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:17] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:18,998 INFO root Transaction added from 14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 to d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969, ID: 13
+2025-08-25 02:33:19,393 INFO root New block added: 14
+2025-08-25 02:33:19,402 INFO root Message sent from 14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 to d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969
+2025-08-25 02:33:19,403 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:19] "[35m[1mPOST /send_message HTTP/1.1[0m" 201 -
+2025-08-25 02:33:19,417 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:19] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:20,782 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:20] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:20,906 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:20] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:23,774 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:23] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:24,131 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:24] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:24,957 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:24] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:33:24,977 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:24] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:33:24,996 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:24] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:33:25,726 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:25] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:27,123 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:27] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:28,009 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:28] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:30,134 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:30] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:31,020 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:31] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:33,123 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:33] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:34,006 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:34] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:35,744 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:35] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:33:36,128 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:36] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:37,019 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:37] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:39,008 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:39] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:33:39,118 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:39] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:40,005 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:40] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:42,129 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:42] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:43,009 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:43] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:45,049 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:45] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:46,008 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:46] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:47,907 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:47] "GET /get_conversation?with=d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969 HTTP/1.1" 200 -
+2025-08-25 02:33:49,003 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:49] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:52,135 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:52] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:55,125 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:55] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:33:58,131 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:33:58] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:01,128 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:01] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:04,137 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:04] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:07,121 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:07] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:10,132 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:10] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:13,119 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:13] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:16,122 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:16] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:19,122 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:19] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:22,125 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:22] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:25,124 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:25] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:28,129 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:28] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:31,129 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:31] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:34,122 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:34] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:37,133 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:37] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:40,127 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:40] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:43,131 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:43] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:46,134 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:46] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:34:49,136 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:34:49] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:35:41,151 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:35:41] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:36:08,404 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:36:08] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:36:10,011 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:36:10] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:38:47,633 INFO root Blockchain initialized
+2025-08-25 02:38:47,702 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.14:5000
+2025-08-25 02:38:47,702 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-08-25 02:38:47,704 INFO werkzeug  * Restarting with stat
+2025-08-25 02:38:48,211 INFO root Blockchain initialized
+2025-08-25 02:38:48,250 WARNING werkzeug  * Debugger is active!
+2025-08-25 02:38:48,255 INFO werkzeug  * Debugger PIN: 910-978-933
+2025-08-25 02:38:53,232 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:38:53] "[32mGET / HTTP/1.1[0m" 302 -
+2025-08-25 02:38:53,258 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:38:53] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:38:53,322 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:38:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:38:53,412 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:38:53] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:38:58,237 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:38:58] "GET /profile HTTP/1.1" 200 -
+2025-08-25 02:38:58,255 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:38:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:39:06,564 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:39:06] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:39:06,582 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:39:06] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:39:07,246 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:39:07] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:39:16,976 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:39:16] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:39:16,999 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:39:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:39:17,013 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:39:17] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:42:12,941 INFO root Blockchain initialized
+2025-08-25 02:42:13,016 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.14:5000
+2025-08-25 02:42:13,016 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-08-25 02:42:13,019 INFO werkzeug  * Restarting with stat
+2025-08-25 02:42:13,637 INFO root Blockchain initialized
+2025-08-25 02:42:13,678 WARNING werkzeug  * Debugger is active!
+2025-08-25 02:42:13,683 INFO werkzeug  * Debugger PIN: 910-978-933
+2025-08-25 02:42:17,450 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:42:17] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:42:17,510 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:42:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:42:17,589 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:42:17] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:42:19,601 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:42:19] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:42:34,422 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:42:34] "GET /profile HTTP/1.1" 200 -
+2025-08-25 02:42:34,441 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:42:34] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:51:05,353 INFO root Blockchain initialized
+2025-08-25 02:51:05,470 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.14:5000
+2025-08-25 02:51:05,470 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-08-25 02:51:05,472 INFO werkzeug  * Restarting with stat
+2025-08-25 02:51:06,131 INFO root Blockchain initialized
+2025-08-25 02:51:06,179 WARNING werkzeug  * Debugger is active!
+2025-08-25 02:51:06,183 INFO werkzeug  * Debugger PIN: 910-978-933
+2025-08-25 02:51:09,299 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:09] "[32mGET / HTTP/1.1[0m" 302 -
+2025-08-25 02:51:09,329 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:09] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:51:09,402 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:51:10,095 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:10] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:51:12,393 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:12] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:12,872 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:12] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:51:14,344 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:14] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:51:14,952 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:14] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:19,568 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:19] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:51:20,056 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:20] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:20,536 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:20] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:20,864 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:20] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:22,231 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:22] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:23,656 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:23] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:29,201 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:29] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:29,888 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:29] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:40,832 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:40] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:51:43,612 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:43] "GET /profile HTTP/1.1" 200 -
+2025-08-25 02:51:43,631 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:51:44,940 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:44] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:51:44,958 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:51:45,404 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:45] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:52,575 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:52] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:51:52,594 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:51:52,619 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:52] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:51:54,472 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:54] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:51:59,720 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:51:59] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:00,824 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:00] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:00,992 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:00] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:01,432 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:01] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:01,855 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:01] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:02,272 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:02] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:52:04,480 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:04] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:06,408 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:06] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:09,306 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:09] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:52:10,032 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:10] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:10,336 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:10] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:10,511 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:10] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:14,799 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:14] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:52:17,809 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:17] "GET /profile HTTP/1.1" 200 -
+2025-08-25 02:52:17,830 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:52:19,114 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:19] "GET /groups HTTP/1.1" 200 -
+2025-08-25 02:52:19,135 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:52:19,150 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:19] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:52:19,616 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:19] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:52:19,633 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:52:19,712 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:19] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:20,759 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:20] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:52:20,777 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:52:20,801 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:20] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:52:24,721 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:24] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:29,128 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:29] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:41,656 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:41] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:52:42,992 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:42] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:52:48,928 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:52:48] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:15,604 INFO root Blockchain initialized
+2025-08-25 02:55:15,697 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.14:5000
+2025-08-25 02:55:15,698 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-08-25 02:55:15,703 INFO werkzeug  * Restarting with stat
+2025-08-25 02:55:16,306 INFO root Blockchain initialized
+2025-08-25 02:55:16,344 WARNING werkzeug  * Debugger is active!
+2025-08-25 02:55:16,355 INFO werkzeug  * Debugger PIN: 910-978-933
+2025-08-25 02:55:18,325 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:18] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:55:18,383 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:55:18,498 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:18] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:55:19,528 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:19] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:55:20,673 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:20] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:21,655 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:21] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:21,824 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:21] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:22,256 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:22] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:22,960 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:22] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:25,075 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:25] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:55:27,265 INFO root Contact added/updated: 14f2274fea... (14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231) for user d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969
+2025-08-25 02:55:27,265 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:27] "[35m[1mPOST /add_contact_from_chat HTTP/1.1[0m" 201 -
+2025-08-25 02:55:29,094 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:29] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:55:30,368 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:30] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:55:30,514 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:30] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:55:30,808 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:30] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:33,510 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:33] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:55:36,356 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:36] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:55:36,372 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:55:36,403 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:36] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:55:37,483 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:37] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:55:38,160 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:38] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:55:38,912 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:38] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:39,413 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:39] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:55:42,422 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:42] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:55:43,992 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:43] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:44,760 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:44] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:45,400 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:45] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:45,407 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:45] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:55:45,616 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:45] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:47,200 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:47] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:55:48,216 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:48] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:55:48,409 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:48] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:55:48,615 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:48] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:55:50,461 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:50] "GET /profile HTTP/1.1" 200 -
+2025-08-25 02:55:50,477 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:55:51,706 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:51] "GET /groups HTTP/1.1" 200 -
+2025-08-25 02:55:51,723 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:55:51,741 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:51] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:55:52,318 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:52] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:55:52,336 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:55:52,398 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:55:52] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:56:00,383 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:00] "GET /groups HTTP/1.1" 200 -
+2025-08-25 02:56:00,403 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:56:00,420 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:00] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:56:01,064 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:01] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:56:01,083 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:56:01,130 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:01] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:56:03,384 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:03] "GET /groups HTTP/1.1" 200 -
+2025-08-25 02:56:03,406 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:03] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:56:03,421 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:03] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:56:04,703 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:04] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:56:04,723 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:04] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:56:04,774 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:04] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:56:07,327 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:07] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:56:07,345 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:56:07,369 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:07] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:56:08,240 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:56:08] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:57:44,542 INFO root Blockchain initialized
+2025-08-25 02:57:44,599 INFO werkzeug [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.14:5000
+2025-08-25 02:57:44,599 INFO werkzeug [33mPress CTRL+C to quit[0m
+2025-08-25 02:57:44,601 INFO werkzeug  * Restarting with stat
+2025-08-25 02:57:45,147 INFO root Blockchain initialized
+2025-08-25 02:57:45,188 WARNING werkzeug  * Debugger is active!
+2025-08-25 02:57:45,192 INFO werkzeug  * Debugger PIN: 910-978-933
+2025-08-25 02:57:48,602 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:48] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:57:48,663 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:48] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:57:48,677 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:48] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:57:49,685 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:49] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:57:49,700 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:49] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:57:49,755 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:49] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:57:50,824 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:50] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:57:50,848 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:57:50,915 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:50] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:57:52,017 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:52] "GET /groups HTTP/1.1" 200 -
+2025-08-25 02:57:52,033 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:57:52,052 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:52] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:57:53,157 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:53] "GET /profile HTTP/1.1" 200 -
+2025-08-25 02:57:53,176 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:57:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:00,343 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:00] "GET /groups HTTP/1.1" 200 -
+2025-08-25 02:58:00,367 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:00,379 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:00] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:58:00,911 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:00] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:58:00,931 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:00,981 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:00] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:58:02,480 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:02] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:58:02,499 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:02] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:02,557 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:02] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:58:04,994 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:04] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:05,569 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:05] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:08,007 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:08] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:58:08,029 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:08,081 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:08] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:58:08,838 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:08] "GET /groups HTTP/1.1" 200 -
+2025-08-25 02:58:08,857 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:08,875 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:08] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:58:09,664 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:09] "GET /profile HTTP/1.1" 200 -
+2025-08-25 02:58:09,683 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:14,832 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:14] "GET /groups HTTP/1.1" 200 -
+2025-08-25 02:58:14,853 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:14,870 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:14] "GET /get_groups HTTP/1.1" 200 -
+2025-08-25 02:58:15,319 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:15] "GET /contacts HTTP/1.1" 200 -
+2025-08-25 02:58:15,339 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:15,388 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:15] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:58:15,967 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:15] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-08-25 02:58:15,975 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:15] "GET / HTTP/1.1" 200 -
+2025-08-25 02:58:15,993 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:16,874 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:16] "GET /login HTTP/1.1" 200 -
+2025-08-25 02:58:16,892 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:18,984 INFO root User logged in: d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969
+2025-08-25 02:58:18,985 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:18] "POST /login HTTP/1.1" 200 -
+2025-08-25 02:58:18,999 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:18] "GET /chat HTTP/1.1" 200 -
+2025-08-25 02:58:19,019 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-08-25 02:58:19,145 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:19] "GET /get_conversations HTTP/1.1" 200 -
+2025-08-25 02:58:20,315 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:20] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:22,156 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:22] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:23,928 INFO root Contact added/updated: 14f2274fea... (14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231) for user d29ecf9ed8c1edc70427cdf1f794909361036f6f52a0ee0f8a76877e42019969
+2025-08-25 02:58:23,929 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:23] "[35m[1mPOST /add_contact_from_chat HTTP/1.1[0m" 201 -
+2025-08-25 02:58:25,150 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:25] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:27,329 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:27] "GET /get_contacts HTTP/1.1" 200 -
+2025-08-25 02:58:28,163 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:28] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:31,147 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:31] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:35,123 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:35] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:38,129 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:38] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:41,131 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:41] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:44,126 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:44] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:47,130 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:47] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:50,123 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:50] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:53,134 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:53] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:56,132 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:56] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:58:59,135 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:58:59] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:02,135 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:02] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:05,138 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:05] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:08,123 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:08] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:11,121 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:11] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:14,148 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:14] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:17,124 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:17] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:20,136 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:20] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:23,125 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:23] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:26,128 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:26] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:29,122 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:29] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:32,127 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:32] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:39,811 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:39] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:40,152 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:40] "GET /get_conversation?with=14f2274fea9c01afb4f8e417e3e78b248220e0a68023030088974d4f6aff2231 HTTP/1.1" 200 -
+2025-08-25 02:59:42,424 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:42] "GET /profile HTTP/1.1" 200 -
+2025-08-25 02:59:42,443 INFO werkzeug 127.0.0.1 - - [25/Aug/2025 02:59:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -

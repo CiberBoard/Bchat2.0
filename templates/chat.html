@@ -9,10 +9,10 @@
 
         <!-- Навигация в виде вкладок -->
         <div class="tabs">
-            <div class="tab active" onclick="switchTab('chat')">Chat</div>
-            <div class="tab" onclick="switchTab('contacts')">Contacts</div>
-            <div class="tab" onclick="switchTab('groups')">Groups</div>
-            <div class="tab" onclick="switchTab('profile')">Profile</div>
+            <div class="tab active" onclick="location.href='/chat'">Chat</div>
+            <div class="tab" onclick="location.href='/contacts'">Contacts</div>
+            <div class="tab" onclick="location.href='/groups'">Groups</div>
+            <div class="tab" onclick="location.href='/profile'">Profile</div>
         </div>
 
         <!-- Содержимое вкладок -->
@@ -27,59 +27,6 @@
                         <em>Select a conversation</em>
                     </li>
                 </ul>
-            </div>
-        </div>
-
-        <div id="contacts-tab" class="tab-content">
-            <h3>Contacts</h3>
-            <div class="contacts-list" id="contactsList">
-                <p id="noContactsMessage">Loading contacts...</p>
-            </div>
-            <div class="input-area">
-                <input type="text" id="contactName" placeholder="Name">
-                <input type="text" id="contactAddress" placeholder="Address">
-                <button onclick="addContact()">Add</button>
-            </div>
-        </div>
-
-        <div id="groups-tab" class="tab-content">
-            <h3>Groups</h3>
-            <div class="groups-list" id="groupsList">
-                <p>Loading groups...</p>
-            </div>
-            <div class="input-area">
-                <input type="text" id="groupName" placeholder="Group Name">
-                <input type="text" id="groupMembers" placeholder="Addresses">
-                <button onclick="createGroup()">Create</button>
-            </div>
-        </div>
-
-        <div id="profile-tab" class="tab-content">
-            <h3>Your Profile</h3>
-
-            <!-- Адрес -->
-            <div class="info-item">
-                <label for="address">Your Address:</label>
-                <div class="input-with-copy">
-                    <input type="text" id="address" value="{{ address }}" readonly>
-                    <button onclick="copyToClipboard('address', 'addressFeedback')">Copy</button>
-                    <span id="addressFeedback" class="copy-feedback"></span>
-                </div>
-            </div>
-
-            <!-- Ссылка на полную страницу профиля -->
-            <div class="info-item">
-                <p>For security information and mnemonic phrase, please visit the full profile page.</p>
-                <button onclick="location.href='/profile'" style="width: 100%; margin-top: 10px;">View Full Profile</button>
-            </div>
-
-            <!-- Дополнительная информация -->
-            <div class="info-item">
-                <h4>Account Information</h4>
-                <div class="security-info">
-                    <p><strong>Wallet Status:</strong> <span class="status-active">Active</span></p>
-                    <p><strong>Network:</strong> Mainnet</p>
-                </div>
             </div>
         </div>
     </div>
@@ -106,6 +53,22 @@
         <span class="close">&times;</span>
         <h2>Start New Chat</h2>
         <div class="modal-body">
+            <!-- Кнопка сканирования QR-кода -->
+            <div style="text-align: center; margin-bottom: 15px;">
+                <button onclick="openQRScannerInModal()" id="scanQRBtn" class="scan-qr-btn-modal">
+                    📷 Scan QR Code
+                </button>
+                <div id="qrScannerContainerModal" style="display: none; margin: 15px 0;">
+                    <div style="position: relative;">
+                        <video id="qrVideoModal" style="width: 100%; max-width: 250px; border: 2px solid #333; border-radius: 8px;"></video>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px; border: 2px solid #bb86fc; box-shadow: 0 0 0 1000px rgba(0,0,0,0.5);"></div>
+                    </div>
+                    <p style="color: #aaa; font-size: 12px; margin: 5px 0;">Point camera at QR code</p>
+                    <button onclick="forceCloseQRScannerInModal()" style="margin-top: 10px; background-color: #cf6679; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; width: 100%;">Cancel Scan</button>
+                </div>
+                <div id="scanResultModal" style="margin-top: 10px; color: green; font-weight: bold; display: none;"></div>
+            </div>
+
             <div class="input-group">
                 <label for="newChatSelect">Select Contact:</label>
                 <select id="newChatSelect">
@@ -138,35 +101,32 @@
     margin: 8px 0;
     font-size: 14px;
 }
+
+/* Стили для кнопки сканирования в модальном окне */
+.scan-qr-btn-modal {
+    background-color: #bb86fc;
+    color: #121212;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.scan-qr-btn-modal:hover {
+    background-color: #3700b3;
+}
+
+/* Улучшенный стиль для области сканирования */
+#qrScannerContainerModal video {
+    background-color: #000;
+}
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 <script>
-    // Функция переключения вкладок
-    function switchTab(tabName) {
-        // Скрыть все вкладки
-        document.querySelectorAll('.tab-content').forEach(tab => {
-            tab.classList.remove('active');
-        });
-
-        // Убрать активный класс у всех кнопок
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.classList.remove('active');
-        });
-
-        // Показать выбранную вкладку
-        document.getElementById(tabName + '-tab').classList.add('active');
-
-        // Сделать активной кнопку вкладки
-        event.target.classList.add('active');
-
-        // Загрузить данные для вкладки если нужно
-        if (tabName === 'contacts') {
-            loadContacts();
-        } else if (tabName === 'groups') {
-            loadGroups();
-        }
-    }
-
     // Функции копирования
     function copyToClipboard(elementId, feedbackId) {
         const element = document.getElementById(elementId);
@@ -183,7 +143,231 @@
         });
     }
 
-    // Остальные функции JavaScript (оставляем как в оригинале)
+    // Функции для QR-сканера в модальном окне
+    let scanIntervalModal = null;
+    let streamModal = null;
+    let isQRScannerActiveModal = false; // Флаг активности сканера
+
+    function openQRScannerInModal() {
+        // Если сканер уже активен, не запускаем новый
+        if (isQRScannerActiveModal) {
+            console.log('QR Scanner already active');
+            return;
+        }
+
+        const scannerContainer = document.getElementById('qrScannerContainerModal');
+        const video = document.getElementById('qrVideoModal');
+        const scanBtn = document.getElementById('scanQRBtn');
+        const scanResult = document.getElementById('scanResultModal');
+
+        if (!scannerContainer || !video || !scanBtn || !scanResult) {
+            console.error('QR Scanner elements not found');
+            return;
+        }
+
+        isQRScannerActiveModal = true;
+        scannerContainer.style.display = 'block';
+        scanBtn.style.display = 'none';
+        scanResult.style.display = 'none';
+        scanResult.textContent = '';
+
+        // Попытка получить доступ к камере
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: 'environment',
+                    width: { ideal: 640 },
+                    height: { ideal: 480 }
+                }
+            })
+                .then(function(mediaStream) {
+                    // Проверяем, что сканер все еще должен быть активен
+                    if (!isQRScannerActiveModal) {
+                        mediaStream.getTracks().forEach(track => track.stop());
+                        return;
+                    }
+
+                    streamModal = mediaStream;
+                    video.srcObject = streamModal;
+
+                    // Обработчик успешного запуска видео
+                    video.onloadedmetadata = function() {
+                        if (isQRScannerActiveModal) {
+                            video.play()
+                                .then(() => {
+                                    startScanningModal();
+                                })
+                                .catch(err => {
+                                    console.error('Error playing video:', err);
+                                    forceCloseQRScannerInModal();
+                                });
+                        }
+                    };
+                })
+                .catch(function(err) {
+                    console.error("Error accessing camera: ", err);
+                    alert('Error accessing camera: ' + (err.message || 'Unknown error'));
+                    forceCloseQRScannerInModal();
+                });
+        } else {
+            alert('Camera access not supported in this browser.');
+            forceCloseQRScannerInModal();
+        }
+    }
+
+    function startScanningModal() {
+        if (!isQRScannerActiveModal || scanIntervalModal) {
+            return; // Уже сканируем или сканер неактивен
+        }
+
+        const video = document.getElementById('qrVideoModal');
+        const scanResult = document.getElementById('scanResultModal');
+
+        if (!video || !scanResult) {
+            console.error('Video or scan result elements not found');
+            return;
+        }
+
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        scanIntervalModal = setInterval(function() {
+            // Проверяем, что сканер все еще активен
+            if (!isQRScannerActiveModal) {
+                stopScanningModal();
+                return;
+            }
+
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                try {
+                    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                    const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+                    if (code && code.data) {
+                        let addressToSet = '';
+                        let successMessage = '';
+
+                        // Проверяем, является ли содержимое адресом (64 символа hex)
+                        if (code.data.length === 64 && /^[a-fA-F0-9]+$/.test(code.data)) {
+                            addressToSet = code.data;
+                            successMessage = 'Address scanned successfully!';
+                        } else if (code.data.startsWith('bitcoin:') || code.data.startsWith('BITCOIN:')) {
+                            // Обработка Bitcoin URI
+                            const addressMatch = code.data.match(/bitcoin:([a-zA-Z0-9]{26,})/);
+                            if (addressMatch && addressMatch[1]) {
+                                addressToSet = addressMatch[1];
+                                successMessage = 'Bitcoin address extracted!';
+                            }
+                        }
+
+                        if (addressToSet) {
+                            // Немедленно останавливаем сканирование
+                            stopScanningModal();
+
+                            const addressInput = document.getElementById('newChatAddress');
+                            if (addressInput) {
+                                addressInput.value = addressToSet;
+                            }
+
+                            if (scanResult) {
+                                scanResult.textContent = successMessage;
+                                scanResult.style.display = 'block';
+                                scanResult.style.color = 'green';
+                            }
+
+                            // Закрываем сканер без задержки
+                            forceCloseQRScannerInModal();
+                            return;
+                        }
+                    }
+                } catch (e) {
+                    console.log('QR scan attempt failed, continuing...', e);
+                }
+            }
+        }, 300);
+    }
+
+    function stopScanningModal() {
+        // Останавливаем интервал сканирования
+        if (scanIntervalModal) {
+            clearInterval(scanIntervalModal);
+            scanIntervalModal = null;
+            console.log('QR scanning interval stopped');
+        }
+    }
+
+    function forceCloseQRScannerInModal() {
+        console.log('Force closing QR scanner...');
+
+        // Устанавливаем флаг неактивности
+        isQRScannerActiveModal = false;
+
+        // Останавливаем интервал сканирования
+        stopScanningModal();
+
+        // Получаем элементы
+        const scannerContainer = document.getElementById('qrScannerContainerModal');
+        const scanBtn = document.getElementById('scanQRBtn');
+        const video = document.getElementById('qrVideoModal');
+        const scanResult = document.getElementById('scanResultModal');
+
+        // Скрываем контейнер и показываем кнопку
+        if (scannerContainer) {
+            scannerContainer.style.display = 'none';
+        }
+        if (scanBtn) {
+            scanBtn.style.display = 'block';
+        }
+
+        // Останавливаем видео поток
+        if (streamModal) {
+            try {
+                const tracks = streamModal.getTracks();
+                tracks.forEach(track => {
+                    if (track.readyState === 'live') {
+                        track.stop();
+                        console.log('Track stopped:', track.kind);
+                    }
+                });
+                streamModal = null;
+                console.log('Media stream closed');
+            } catch (e) {
+                console.warn('Error stopping media stream:', e);
+                streamModal = null;
+            }
+        }
+
+        // Очищаем видео элемент
+        if (video) {
+            try {
+                video.pause();
+                video.srcObject = null;
+                // Принудительно обновляем видео элемент
+                video.load();
+                console.log('Video element cleared');
+            } catch (e) {
+                console.warn('Error clearing video element:', e);
+            }
+        }
+
+        // Очищаем результат сканирования через небольшую задержку
+        if (scanResult) {
+            setTimeout(() => {
+                if (scanResult.style.display === 'block') {
+                    scanResult.style.display = 'none';
+                    scanResult.textContent = '';
+                }
+            }, 2000); // Показываем результат 2 секунды, затем скрываем
+        }
+
+        console.log('QR Scanner closed successfully');
+    }
+
+    // Остальные функции JavaScript
     let currentChatAddress = "";
     let currentChatIsGroup = false;
     let currentChatPartnerAddress = "";
@@ -489,19 +673,33 @@
 
     // --- Логика нового чата ---
     function openNewChatModal() {
-        document.getElementById('newChatModal').style.display = 'block';
-        document.getElementById('newChatSelect').value = '';
-        document.getElementById('newChatAddress').value = '';
+        const modal = document.getElementById('newChatModal');
+        if (modal) {
+            modal.style.display = 'block';
+        }
+
+        const selectElement = document.getElementById('newChatSelect');
+        const addressInput = document.getElementById('newChatAddress');
+        if (selectElement) selectElement.value = '';
+        if (addressInput) addressInput.value = '';
+
         loadContactsForModal();
+        // Закрываем сканер при открытии модального окна
+        forceCloseQRScannerInModal();
     }
 
     function closeNewChatModal() {
-        document.getElementById('newChatModal').style.display = 'none';
+        const modal = document.getElementById('newChatModal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+        // Обязательно закрываем сканер при закрытии модального окна
+        forceCloseQRScannerInModal();
     }
 
     async function startNewChat() {
-        const selectedAddress = document.getElementById('newChatSelect').value.trim();
-        const enteredAddress = document.getElementById('newChatAddress').value.trim();
+        const selectedAddress = document.getElementById('newChatSelect')?.value.trim() || '';
+        const enteredAddress = document.getElementById('newChatAddress')?.value.trim() || '';
 
         let chatAddress = '';
         let chatName = '';
@@ -530,173 +728,6 @@
         selectConversation(chatAddress, chatName, false);
     }
 
-    // --- Контакты ---
-    async function loadContacts() {
-        try {
-            const response = await fetch('/get_contacts');
-            const data = await response.json();
-            if (response.ok) {
-                const container = document.getElementById('contactsList');
-                const noContactsMsg = document.getElementById('noContactsMessage');
-                container.innerHTML = '';
-                if (data.contacts.length === 0) {
-                    noContactsMsg.style.display = 'block';
-                    noContactsMsg.textContent = 'No contacts found. Add one!';
-                } else {
-                    noContactsMsg.style.display = 'none';
-                    const ul = document.createElement('ul');
-                    data.contacts.forEach(contact => {
-                        const li = document.createElement('li');
-                        li.className = 'contact-item';
-                        li.innerHTML = `
-                            <span class="contact-info">${contact.name} (${contact.address.substring(0, 10)}...)</span>
-                            <button class="delete-btn" onclick="deleteContact('${contact.address}', this)">Delete</button>
-                        `;
-                        ul.appendChild(li);
-                    });
-                    container.appendChild(ul);
-                }
-            } else {
-                console.error('Failed to load contacts:', data.error);
-                document.getElementById('contactsList').innerHTML = `<p class="error">Error loading contacts: ${data.error}</p>`;
-            }
-        } catch (error) {
-            console.error('Error loading contacts:', error);
-            document.getElementById('contactsList').innerHTML = `<p class="error">Error loading contacts.</p>`;
-        }
-    }
-
-    async function addContact() {
-        const name = document.getElementById('contactName').value.trim();
-        const address = document.getElementById('contactAddress').value.trim();
-
-        if (!name || !address) {
-            alert('Please fill in both name and address.');
-            return;
-        }
-
-        if (address.length !== 64) {
-            alert('Invalid address format. Address must be 64 characters long.');
-            return;
-        }
-
-        try {
-            const response = await fetch('/add_contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, address })
-            });
-            const data = await response.json();
-            if (response.ok) {
-                document.getElementById('contactName').value = '';
-                document.getElementById('contactAddress').value = '';
-                loadContacts();
-                alert('Contact added successfully.');
-            } else {
-                alert('Error: ' + data.error);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred while adding the contact.');
-        }
-    }
-
-    async function deleteContact(address, buttonElement) {
-        if (!confirm("Are you sure you want to delete this contact?")) {
-            return;
-        }
-
-        try {
-            buttonElement.disabled = true;
-            buttonElement.textContent = 'Deleting...';
-
-            const response = await fetch('/delete_contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ address })
-            });
-            const data = await response.json();
-            if (response.ok) {
-                buttonElement.closest('li').remove();
-                const contactItems = document.querySelectorAll('.contact-item');
-                if (contactItems.length === 0) {
-                    document.getElementById('noContactsMessage').style.display = 'block';
-                    document.getElementById('noContactsMessage').textContent = 'No contacts found. Add one!';
-                }
-                alert('Contact deleted successfully.');
-            } else if (response.status === 404) {
-                alert('Contact not found.');
-                buttonElement.closest('li').remove();
-            } else {
-                alert('Error: ' + data.error);
-                buttonElement.disabled = false;
-                buttonElement.textContent = 'Delete';
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred while deleting the contact.');
-            buttonElement.disabled = false;
-            buttonElement.textContent = 'Delete';
-        }
-    }
-
-    // --- Группы ---
-    async function loadGroups() {
-        try {
-            const response = await fetch('/get_groups');
-            const data = await response.json();
-            if (response.ok) {
-                const container = document.getElementById('groupsList');
-                container.innerHTML = '<ul>';
-                if (data.groups.length === 0) {
-                    container.innerHTML += '<li>No groups found.</li>';
-                } else {
-                    data.groups.forEach(group => {
-                        container.innerHTML += `<li>${group.name} (ID: ${group.id.substring(0, 10)}...)</li>`;
-                    });
-                }
-                container.innerHTML += '</ul>';
-            } else {
-                console.error('Failed to load groups:', data.error);
-                document.getElementById('groupsList').innerHTML = `<p>Error loading groups: ${data.error}</p>`;
-            }
-        } catch (error) {
-            console.error('Error loading groups:', error);
-            document.getElementById('groupsList').innerHTML = `<p>Error loading groups.</p>`;
-        }
-    }
-
-    async function createGroup() {
-        const name = document.getElementById('groupName').value;
-        const membersInput = document.getElementById('groupMembers').value;
-        const members = membersInput.split(',').map(m => m.trim()).filter(m => m);
-
-        if (!name || members.length === 0) {
-            alert('Please fill in group name and at least one member.');
-            return;
-        }
-
-        try {
-            const response = await fetch('/create_group', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, members })
-            });
-            const data = await response.json();
-            if (response.ok) {
-                document.getElementById('groupName').value = '';
-                document.getElementById('groupMembers').value = '';
-                loadGroups();
-                alert('Group created successfully.');
-            } else {
-                alert('Error: ' + data.error);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred.');
-        }
-    }
-
     // --- Автообновление ---
     function startPolling() {
          if (pollInterval) clearInterval(pollInterval);
@@ -720,25 +751,55 @@
         startPolling();
 
         const messageInput = document.getElementById('messageContent');
-        messageInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                sendMessage();
-            }
-        });
+        if (messageInput) {
+            messageInput.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+        }
 
         // Обработчики для модального окна
-        document.getElementById('newChatBtn').onclick = openNewChatModal;
-        document.querySelector('#newChatModal .close').onclick = closeNewChatModal;
+        const newChatBtn = document.getElementById('newChatBtn');
+        const closeModalBtn = document.querySelector('#newChatModal .close');
+        const startNewChatBtn = document.getElementById('startNewChatBtn');
+
+        if (newChatBtn) newChatBtn.onclick = openNewChatModal;
+        if (closeModalBtn) closeModalBtn.onclick = closeNewChatModal;
+        if (startNewChatBtn) startNewChatBtn.onclick = startNewChat;
+
+        // Обработчик клика вне модального окна
         window.onclick = function(event) {
             const modal = document.getElementById('newChatModal');
             if (event.target == modal) {
                 closeNewChatModal();
             }
         }
-        document.getElementById('startNewChatBtn').onclick = startNewChat;
     });
 
-    window.addEventListener('beforeunload', stopPolling);
+    // Обработчики событий закрытия окна/вкладки
+    window.addEventListener('beforeunload', function() {
+        forceCloseQRScannerInModal();
+        stopPolling();
+    });
+
+    // Обработчик для закрытия сканера при нажатии Escape
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const modal = document.getElementById('newChatModal');
+            if (modal && modal.style.display === 'block') {
+                closeNewChatModal();
+            }
+        }
+    });
+
+    // Обработчик видимости страницы - закрываем камеру при переключении вкладок
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            // Страница скрыта - закрываем камеру
+            forceCloseQRScannerInModal();
+        }
+    });
 </script>
 {% endblock %}

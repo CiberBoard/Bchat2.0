@@ -9,15 +9,32 @@
 
         <!-- Навигация в виде вкладок -->
         <div class="tabs">
-            <div class="tab" onclick="location.href='/chat'">Chat</div>
-            <div class="tab active" onclick="location.href='/contacts'">Contacts</div>
-            <div class="tab" onclick="location.href='/groups'">Groups</div>
-            <div class="tab" onclick="location.href='/profile'">Profile</div>
+            <div class="tab {% if request.endpoint == 'chat' %}active{% endif %}" onclick="location.href='/chat'">Chat</div>
+            <div class="tab {% if request.endpoint == 'contacts' %}active{% endif %}" onclick="location.href='/contacts'">Contacts</div>
+            <div class="tab {% if request.endpoint == 'groups' %}active{% endif %}" onclick="location.href='/groups'">Groups</div>
+            <div class="tab {% if request.endpoint == 'profile' %}active{% endif %}" onclick="location.href='/profile'">Profile</div>
         </div>
     </div>
 
     <div class="main-content">
         <h2>Contacts</h2>
+
+        <!-- Сканер QR-кода -->
+        <div class="info-item">
+            <button onclick="openQRScanner()" class="scan-qr-btn">
+                📷 Scan QR Code to Add Contact
+            </button>
+            <div id="qrScannerContainer" style="display: none; margin: 15px 0;">
+                <div style="position: relative;">
+                    <video id="qrVideo" style="width: 100%; max-width: 300px; border: 2px solid #333; border-radius: 8px; background-color: #000;"></video>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px; border: 2px solid #bb86fc; box-shadow: 0 0 0 1000px rgba(0,0,0,0.5);"></div>
+                </div>
+                <p style="color: #aaa; font-size: 12px; text-align: center; margin: 5px 0;">Point camera at QR code</p>
+                <div id="scanResult" style="margin: 10px 0; color: green; font-weight: bold; display: none;"></div>
+                <button onclick="forceCloseQRScanner()" style="margin-top: 10px; background-color: #cf6679; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; width: 100%;">Cancel Scan</button>
+            </div>
+        </div>
+
         <div class="contacts-list" id="contactsList">
             <!-- Contacts will be loaded here -->
             <p id="noContactsMessage">Loading contacts...</p>
@@ -30,7 +47,42 @@
     </div>
 </div>
 
+<style>
+.scan-qr-btn {
+    background-color: #bb86fc;
+    color: #121212;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.scan-qr-btn:hover {
+    background-color: #3700b3;
+}
+
+.status-active {
+    color: #00c853;
+    font-weight: bold;
+}
+
+.security-info {
+    background-color: #2c2c2c;
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 3px solid #bb86fc;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 <script>
+    let scanInterval = null;
+    let stream = null;
+    let isScanning = false;
+
     async function loadContacts() {
         try {
             const response = await fetch('/get_contacts');
@@ -146,7 +198,200 @@
         }
     }
 
+    // Функции для QR-сканера
+    function openQRScanner() {
+        const scannerContainer = document.getElementById('qrScannerContainer');
+        const video = document.getElementById('qrVideo');
+        const scanResult = document.getElementById('scanResult');
+
+        if (!scannerContainer || !video) {
+            console.error('QR Scanner elements not found');
+            return;
+        }
+
+        scannerContainer.style.display = 'block';
+        if (scanResult) {
+            scanResult.style.display = 'none';
+            scanResult.textContent = '';
+        }
+
+        // Попытка получить доступ к камере
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+                .then(function(mediaStream) {
+                    stream = mediaStream;
+                    video.srcObject = stream;
+                    video.play();
+
+                    // Начинаем сканирование
+                    isScanning = true;
+                    startScanning();
+                })
+                .catch(function(err) {
+                    console.error("Error accessing camera: ", err);
+                    alert('Error accessing camera: ' + (err.message || 'Unknown error'));
+                    forceCloseQRScanner();
+                });
+        } else {
+            alert('Camera access not supported in this browser.');
+            forceCloseQRScanner();
+        }
+    }
+
+    function startScanning() {
+        const video = document.getElementById('qrVideo');
+        const scanResult = document.getElementById('scanResult');
+
+        if (!video || !isScanning) return;
+
+        scanInterval = setInterval(function() {
+            if (!isScanning) {
+                stopScanning();
+                return;
+            }
+
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                try {
+                    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                    const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+                    if (code && code.data) {
+                        // Проверяем, является ли содержимое адресом (64 символа hex)
+                        if (code.data.length === 64 && /^[a-fA-F0-9]+$/.test(code.data)) {
+                            const contactAddress = document.getElementById('contactAddress');
+                            if (contactAddress) {
+                                contactAddress.value = code.data;
+                                const contactName = document.getElementById('contactName');
+                                if (contactName) {
+                                    contactName.focus();
+                                }
+                            }
+                            if (scanResult) {
+                                scanResult.textContent = 'Address scanned successfully! Enter a name.';
+                                scanResult.style.display = 'block';
+                                scanResult.style.color = 'green';
+                            }
+                            stopScanning();
+                            setTimeout(() => forceCloseQRScanner(), 100);
+                            return;
+                        } else if (code.data.startsWith('bitcoin:') || code.data.startsWith('BITCOIN:')) {
+                            // Обработка Bitcoin URI
+                            const addressMatch = code.data.match(/bitcoin:([a-zA-Z0-9]{26,})/);
+                            if (addressMatch && addressMatch[1]) {
+                                const contactAddress = document.getElementById('contactAddress');
+                                if (contactAddress) {
+                                    contactAddress.value = addressMatch[1];
+                                    const contactName = document.getElementById('contactName');
+                                    if (contactName) {
+                                        contactName.focus();
+                                    }
+                                }
+                                if (scanResult) {
+                                    scanResult.textContent = 'Bitcoin address extracted! Enter a name.';
+                                    scanResult.style.display = 'block';
+                                    scanResult.style.color = 'green';
+                                }
+                                stopScanning();
+                                setTimeout(() => forceCloseQRScanner(), 100);
+                                return;
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.log('QR scan attempt failed, continuing...', e);
+                }
+            }
+        }, 300);
+    }
+
+    function stopScanning() {
+        isScanning = false;
+        // Останавливаем интервал сканирования
+        if (scanInterval) {
+            clearInterval(scanInterval);
+            scanInterval = null;
+        }
+    }
+
+    function forceCloseQRScanner() {
+        const scannerContainer = document.getElementById('qrScannerContainer');
+        const video = document.getElementById('qrVideo');
+
+        if (scannerContainer) {
+            scannerContainer.style.display = 'none';
+        }
+
+        // Останавливаем сканирование
+        stopScanning();
+
+        // Останавливаем видео поток
+        if (stream) {
+            try {
+                const tracks = stream.getTracks();
+                tracks.forEach(track => {
+                    if (track.readyState === 'live') {
+                        try {
+                            track.stop();
+                        } catch (e) {
+                            console.warn('Error stopping track:', e);
+                        }
+                    }
+                });
+            } catch (e) {
+                console.warn('Error getting tracks:', e);
+            }
+            stream = null;
+        }
+
+        // Очищаем video srcObject
+        if (video) {
+            try {
+                if (video.srcObject) {
+                    video.srcObject = null;
+                }
+                video.pause();
+                video.load();
+            } catch (e) {
+                console.warn('Error cleaning video element:', e);
+            }
+        }
+
+        // Очищаем результат сканирования
+        const scanResult = document.getElementById('scanResult');
+        if (scanResult) {
+            scanResult.style.display = 'none';
+            scanResult.textContent = '';
+        }
+
+        console.log('QR Scanner closed successfully');
+    }
+
     // Загрузка контактов при открытии страницы
-    document.addEventListener('DOMContentLoaded', loadContacts);
+    document.addEventListener('DOMContentLoaded', function() {
+        loadContacts();
+
+        // Обработчик для закрытия сканера при нажатии Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                forceCloseQRScanner();
+            }
+        });
+    });
+
+    // Очищаем ресурсы при закрытии страницы
+    window.addEventListener('beforeunload', function() {
+        forceCloseQRScanner();
+    });
+
+    // Дополнительная очистка при потере фокуса окна
+    window.addEventListener('blur', function() {
+        forceCloseQRScanner();
+    });
 </script>
 {% endblock %}
